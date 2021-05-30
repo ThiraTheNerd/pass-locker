@@ -12,6 +12,10 @@ class TestCredentials(unittest.TestCase):
     self.twitter_account.save_credentials()
     self.assertEqual(len(Credentials.user_accounts), 1)
 
+  def test_display_credentials(self):
+    self.assertEqual(Credentials.display_credentials(), Credentials.user_accounts)
+
+
 
 if __name__ == "__main__":
   unittest.main()
