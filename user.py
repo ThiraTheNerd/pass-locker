@@ -4,5 +4,5 @@ class User():
     self.login_name = login_name
     self.login_password = login_password
 
-  def create_user(self):
+  def save_user(self):
     User.users_list.append(self)
