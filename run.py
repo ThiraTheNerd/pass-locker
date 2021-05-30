@@ -23,6 +23,9 @@ def display_credentials():
 def delete_account(account):
   Credentials.delete_account_credentials(account)
 
+def verify_user(string):
+  Credentials.verify_login(string)
+
 def main():
   print("Hello, welcome to Password locker. Do you have an existing password locker account?\
      Type Yes of No")
@@ -37,9 +40,19 @@ def main():
     print("Password")
     print("-"*10)
     pass_word = input()
-
     login_data = user_name + pass_word
-    print(login_data)
+
+    if verify_user(login_data):
+      Print(f"You have successfully Logged into Password Locker")
+    else :
+      print("Data provided does not match any exsisting accounts.")
+  else :
+    print("Unrecognized input")
+    
+
+
+
+
 
 
 
