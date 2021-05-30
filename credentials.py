@@ -16,6 +16,48 @@ class Credentials():
   def delete_account_credentials(self):
     Credentials.user_accounts.remove(self)
 
+  @classmethod
+  def find_account(cls,string):
+    for account in cls.user_accounts:
+      if account.account_name == string:
+        return account
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     
