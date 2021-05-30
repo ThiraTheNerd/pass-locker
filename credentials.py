@@ -13,6 +13,9 @@ class Credentials():
   def display_credentials(cls):
     return cls.user_accounts
 
+  def delete_account_credentials(self):
+    Credentials.user_accounts.remove(self)
+
 
 
     

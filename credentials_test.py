@@ -15,6 +15,11 @@ class TestCredentials(unittest.TestCase):
   def test_display_credentials(self):
     self.assertEqual(Credentials.display_credentials(), Credentials.user_accounts)
 
+  def test_delete_account_credentials(self):
+    self.twitter_account.save_credentials()
+    self.twitter_account.delete_account_credentials()
+    self.assertEqual(len(Credentials.user_accounts), 0)
+
 
 
 if __name__ == "__main__":
