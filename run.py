@@ -19,45 +19,58 @@ def save_account(account):
 
 def display_credentials():
   return Credentials.display_credentials()
+def display_users():
+  return User.display_users()
 
 def delete_account(account):
   Credentials.delete_account_credentials(account)
 
-def verify_user(string):
-  User.verify_login(string)
+def verify_user(login_name,login_pass):
+  '''
+  Confirm if user exists
+  '''
+  return User.verify_login(login_name,login_pass)
 
 def find_account(string):
-  Credentials.find_account(string)
+  return Credentials.find_account(string)
+
+def generate_password(number):
+  '''
+  Generates a random password
+  '''
+  auto_password = Credentials.generate_password(number)
+  return auto_password
+
 
 def main():
-  print("Hello, welcome to Password locker. Do you have an existing password locker account?\
-     Type Yes of No")
+  print("Hello Welcome to your accounts password store.")
+  print("Do you have an excisting account? Type yes or no")
   has_account = input().lower()
-
-  if has_account == 'yes':
+  if has_account == "yes":
     print("Enter your Login Credentials")
     print("-"*20)
     print("Username")
-    print("-"*10)
-    user_name = input()
-    print("Password")
+    print("T-"*10)
+    logname = input("Username: ")
+    print("password: ")
     print("-"*10)
     pass_word = input()
-    login_data = user_name + pass_word
+    while True:
 
-    if verify_user(login_data):
-      Print(f"You have successfully Logged into Password Locker. You can view all your accounts below")
-      display_credentials()
-
-    else :
-      print("Data provided does not match any exsisting accounts.")
+      if verify_user(logname, pass_word):
+        print("You have successfully Logged into Password Locker.")
+        break
+      else :
+        print("Data provided does not match any exsisting accounts.")
+        break
+    
 
   elif has_account == "no":
     print("CREATE NEW ACCOUNT")
     print("Please enter your desired username and Password for your password locker account.")
     print("-"*20)
     print("Username")
-    print("-"*10)
+    print("="*10)
     login_name = input()
     print("Password")
     print("-"*10)
@@ -65,45 +78,77 @@ def main():
 
     save_user(create_user(login_name,login_pass))
     print("Account has been created successfully")
+  #   print("You can now log into your account")
+    print("-"*80)
+    print(f"Hello {login_name} your account has been created successfully. Your new password is {login_pass}")
+  while True:
+    print("Use these short codes :\
+      cc - Add new account credentials,\
+      dc - display all credentials,\
+      fc - find account\
+      gp - generate a random password\
+      del - Delete a credential account,\
+      ex -exit ")
+    short_code = input().lower()
 
-  else :
-    print("Unrecognized input")
-
-  print("What action would you like to perform? ")
-  print("Use these short codes : cc - create a new account credentials, dc - display all credentials,\n"
-     "del - Delete a credential account, ex -exit the contact list ")
-  short_code = input().lower()
-
-  if short_code == "cc":
-    print("What account would you like to save credentials for?")
-    print("Account Name")
-    acc_name = input()
-    print("Enter desired user_name")
-    user_name = input()
-
-    print("Enter desired password")
-    pass_word = input()
-
-    save_account(create_account(acc_name,user_name,pass_word))
-    print("Account has beed added to your credentials list")
-
-  elif short_code == "dc":
-    if display_credentials():
-      Print("Here is a list of all your account credentials")
-
-      for account in display_credentials():
-        print(f"{Credentials.account_name} -- {credentials.user_name} -- {Credentials.password} ")
+    if short_code == "cc":
+      # isLoggedIn()
+      print("What account would you like to save credentials for?")
+      print("Account Name")
+      acc_name = input()
+      print("Enter desired user_name")
+      user_name = input()
+      print("\n")
+      print("Please type cp - to enter your own password and \
+        gp- to generate a random password write ")
+      print("\n")
+      pass_type = input().lower()
+      while True:
+        if pass_type == "cp":
+          pass_word = input("Password: ").isnumeric()
+          break
+        elif pass_type == "gp":
+          print("\n")
+          print("Enter desired password length")
+          string_length = input("Password Length: ")
+          pass_word = generate_password(string_length)
+          break
+        else:
+          print("\n")
+          print("Invalid password")
+          break
+      save_account(create_account(acc_name,user_name,pass_word))
+      print("\n")
+      print(f"Account Credential for: {acc_name} - UserName: {user_name} - Password:{pass_word} created succesfully")
+      print("\n")
+    elif short_code == "dc":
+      if display_credentials():
+        print("Here is a list of all your account credentials")
         print("\n")
 
-    else:
-      print("You have not saved any account credentials")
+        for account in display_credentials():
+          print(f"{account.account_name} -- {account.user_name} -- {account.password} ")
+          print("\n")
 
-  elif short_code == "del":
-    print("Which account would you like to delete?")
-    del_account = input("Enter the account name ie. Instagram")
-    delete_account(find_account(del_account))
-    print(f"{del_account} has been deleted successfully")
-    
+      else:
+        print("\n")
+        print("You have not saved any account credentials")
+    elif short_code == "fc":
+      print("Enter the account name")
+      account = input()
+      found_account= find_account(account)
+      print("\n")
+      print(f"{found_account.account_name}, {found_account.user_name}, {found_account.password}")
+
+
+    elif short_code == "del":
+      print("Which account would you like to delete?")
+      print("\n")
+      del_account = input("Enter the account name ie. Instagram")
+      delete_account(find_account(del_account))
+      print("\n")
+      print(f"{del_account} has been deleted successfully")
+  
 
 
 
