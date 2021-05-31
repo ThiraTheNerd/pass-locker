@@ -14,25 +14,46 @@ def function():
 function()
 
 def create_user(login_name, login_password):
+  '''
+  Creates an instance of the object user
+  '''
   new_user = User(login_name, login_password)
   return new_user
 
 def save_user(user):
+  '''
+  Saves an instance of a User
+  '''
   User.save_user(user)
 
 def create_account(account_name, user_name, password ):
+  '''
+  Creates the instance of a Credentials object
+  '''
   new_account = Credentials(account_name, user_name, password)
   return new_account
 
 def save_account(account):
+  '''
+  Saves the instance created
+  '''
   Credentials.save_credentials(account)
 
 def display_credentials():
+  '''
+  Displays a list of all saved accounts
+  '''
   return Credentials.display_credentials()
 def display_users():
+  '''
+  Displays a list of all saved users
+  '''
   return User.display_users()
 
 def delete_account(account):
+  '''
+  Deletes a specific account
+  '''
   Credentials.delete_account_credentials(account)
 
 def verify_user(login_name,login_pass):
@@ -42,6 +63,9 @@ def verify_user(login_name,login_pass):
   return User.verify_login(login_name,login_pass)
 
 def find_account(string):
+  '''
+  LOoks for a specific account in the stored accounts
+  '''
   return Credentials.find_account(string)
 
 def generate_password(number):
@@ -118,7 +142,7 @@ def main():
       pass_type = input().lower()
       while True:
         if pass_type == "cp":
-          pass_word = input("Password: ").isnumeric()
+          pass_word = input("Password: ")
           break
         elif pass_type == "gp":
           print("\n")
