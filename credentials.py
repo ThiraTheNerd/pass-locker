@@ -1,3 +1,6 @@
+import random
+import string
+
 class Credentials():
 
   user_accounts= []
@@ -5,7 +8,7 @@ class Credentials():
     self.account_name = account_name
     self.user_name = user_name
     self.password = password
-
+    
   def save_credentials(self):
     Credentials.user_accounts.append(self)
 
@@ -21,6 +24,12 @@ class Credentials():
     for account in cls.user_accounts:
       if account.account_name == string:
         return account
+  def generate_password(number):
+    '''
+    Generate a random string of letters and digits
+    '''
+    password = string.ascii_uppercase + string.ascii_lowercase + string.digits + "¬!£$%^&*~@"
+    return ''.join(random.choice(password) for i in range(number))
 
   
 
