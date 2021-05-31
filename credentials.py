@@ -21,6 +21,9 @@ class Credentials():
 
   @classmethod
   def find_account(cls,string):
+    '''
+    Finds a specific saved account
+    '''
     for account in cls.user_accounts:
       if account.account_name == string:
         return account
