@@ -110,7 +110,7 @@ def main():
         elif pass_type == "gp":
           print("\n")
           print("Enter desired password length")
-          string_length = input("Password Length: ")
+          string_length = int(input("Password Length: "))
           pass_word = generate_password(string_length)
           break
         else:
