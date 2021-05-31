@@ -78,7 +78,6 @@ def main():
 
     save_user(create_user(login_name,login_pass))
     print("Account has been created successfully")
-  #   print("You can now log into your account")
     print("-"*80)
     print(f"Hello {login_name} your account has been created successfully. Your new password is {login_pass}")
   while True:
@@ -140,7 +139,15 @@ def main():
       print("\n")
       print(f"{found_account.account_name}, {found_account.user_name}, {found_account.password}")
 
-
+    elif short_code == "gp":
+      print("Enter your desired password length")
+      print("\n")
+      string_length = int(input("Password Length : "))
+      print("\n")
+      pass_word = generate_password(string_length)
+      print("\n")
+      print(f"Your generated password is {pass_word}")
+          
     elif short_code == "del":
       print("Which account would you like to delete?")
       print("\n")

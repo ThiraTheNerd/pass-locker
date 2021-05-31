@@ -1,6 +1,6 @@
 import random
 import string
-
+import pyperclip
 class Credentials():
 
   user_accounts= []
@@ -30,6 +30,14 @@ class Credentials():
     '''
     password = string.ascii_uppercase + string.ascii_lowercase + string.digits + "¬!£$%^&*~@"
     return ''.join(random.choice(password) for i in range(number))
+
+  @classmethod
+  def copy_function(cls, string):
+    '''
+    Use the pyperclip module to copy account details
+    '''
+    copied_password = Credentials.find_account(string)
+    pyperclip.copy(copied_password)
 
   
 

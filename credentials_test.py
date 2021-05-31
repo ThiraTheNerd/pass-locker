@@ -21,9 +21,20 @@ class TestCredentials(unittest.TestCase):
     self.assertEqual(len(Credentials.user_accounts), 0)
 
   def test_find_account(self):
+    '''
+    Test the function to find an acccount by passing a string argument
+    '''
     self.twitter_account.save_credentials()
     found_account = Credentials.find_account("twitter")
     self.assertEqual(found_account.user_name, "twitter_username")
+
+  def copy_function(self):
+    '''
+    Test the pyperclip module
+    '''
+    self.user_account.save_user()
+    copied_account = Credentials.copy_function("twitter")
+    self.assertEqual(copied_account.user_name, "twitter_username")
 
 
 
